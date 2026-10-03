@@ -2,10 +2,11 @@ import axios from "axios";
 
 // Backend API URL
 // Local development uses Django on localhost.
-// For production, Vercel will provide VITE_API_BASE_URL.
+// Production uses the Railway backend.
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://127.0.0.1:8000/api/";
+  window.location.hostname.includes("vercel.app")
+    ? "https://military-asset-management-production-9915.up.railway.app/api/"
+    : "http://127.0.0.1:8000/api/";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
